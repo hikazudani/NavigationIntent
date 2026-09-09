@@ -12,6 +12,8 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import br.edu.ifsp.scl.sc3038432.navigationintent.navigation.MainNavHost
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.composable.component.MainTopAppBar
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.composable.screen.IntentScreen
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
@@ -23,10 +25,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             NavigationIntentTheme {
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(),
-                    topBar = ::MainTopAppBar
-                    ) { innerPadding ->
-                    IntentScreen(
+                    modifier = Modifier.fillMaxSize(), topBar = ::MainTopAppBar
+                ) { innerPadding ->
+                    MainNavHost(
+                        navHostController = rememberNavController(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
