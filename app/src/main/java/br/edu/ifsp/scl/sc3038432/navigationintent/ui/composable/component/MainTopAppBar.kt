@@ -13,14 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3038432.navigationintent.R
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainTopAppBar(onNavigate: (String) -> Unit) {
+fun MainTopAppBar(onNavigate: (String) -> Unit, showActions: Boolean) {
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         modifier = Modifier.fillMaxWidth(),
@@ -29,7 +27,7 @@ fun MainTopAppBar(onNavigate: (String) -> Unit) {
             titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             subtitleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
-        actions = { MainDropDownMenu(onNavigate) }
+        actions = { if (showActions) MainDropDownMenu(onNavigate) }
     )
 }
 
@@ -49,7 +47,10 @@ fun MainTopAppBarPreview() {
         // Usando o Surface somente para dar cor de fundo no preview. Sem ele, o fundo fica
         // transparente e não dá para ver o preview em tema escuro.
         Surface {
-            MainTopAppBar({  })
+            MainTopAppBar(
+                { },
+                showActions = false,
+            )
         }
     }
 }
