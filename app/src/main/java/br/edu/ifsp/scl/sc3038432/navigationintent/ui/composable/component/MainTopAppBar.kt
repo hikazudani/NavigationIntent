@@ -27,7 +27,8 @@ fun MainTopAppBar() {
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             subtitleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        )
+        ),
+        actions = { MainDropDownMenu() }
     )
 }
 
