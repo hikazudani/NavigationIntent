@@ -26,11 +26,10 @@ fun MainNavHost(navHostController: NavHostController, modifier: Modifier, mainVi
             ParameterScreen(
                 receivedParameter = mainViewModel.parameter,
                 modifier = modifier,
-                onSaveAndQuit = { parameter ->
-                    mainViewModel.updateParameter(parameter)
-                    navHostController.popBackStack()
-                }
-            )
+                onSave = mainViewModel::updateParameter,
+            ){
+                navHostController.popBackStack()
+            }
         }
     }
 }

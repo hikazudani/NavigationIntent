@@ -21,7 +21,8 @@ import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 fun ParameterScreen(
     receivedParameter: String,
     modifier: Modifier,
-    onSaveAndQuit: (String) -> Unit
+    onSave: (String) -> Unit,
+    onQuit: () -> Unit
 ) {
     var parameter by remember { mutableStateOf(receivedParameter) }
     Column(modifier = modifier.fillMaxWidth()) {
@@ -32,7 +33,10 @@ fun ParameterScreen(
             onValueChange = { parameter = it }
         )
         Button(
-            onClick = { onSaveAndQuit(parameter) },
+            onClick = {
+                onSave(parameter)
+                onQuit()
+                      },
             modifier = Modifier.fillMaxWidth()
         ) {
             Text("Save and quit")
@@ -55,7 +59,8 @@ fun ParameterScreenPreview() {
             ParameterScreen(
                 modifier = Modifier,
                 receivedParameter = "",
-                onSaveAndQuit = {}
+                onSave = {},
+                onQuit = {}
             )
         }
     }
