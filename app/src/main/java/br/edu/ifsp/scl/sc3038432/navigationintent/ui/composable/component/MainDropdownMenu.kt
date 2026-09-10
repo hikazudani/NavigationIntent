@@ -42,6 +42,7 @@ fun MainDropDownMenu( onNavigate: (String) -> Unit ) {
                 onClick = {
                 // Navega para a ParameterScreen
                     onNavigate(Screen.ParameterScreen.route)
+                    expanded = false
                     }
             )
         }
