@@ -24,12 +24,14 @@ class MainActivity : ComponentActivity() {
             NavigationIntentTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
-                    topBar = {MainTopAppBar(navHostController)}
-                    //topBar = ::MainTopAppBar
+                    topBar = {
+                        MainTopAppBar {
+                            destination -> navHostController.navigate(destination)
+                        }
+                    }
                 ) { innerPadding ->
                     MainNavHost(
                         navHostController = navHostController,
-                        //navHostController = rememberNavController(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

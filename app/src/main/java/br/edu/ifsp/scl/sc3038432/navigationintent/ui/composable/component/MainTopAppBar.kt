@@ -20,7 +20,7 @@ import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainTopAppBar(navHostController: NavHostController) {
+fun MainTopAppBar(onNavigate: (String) -> Unit) {
     TopAppBar(
         title = { Text(stringResource(R.string.app_name)) },
         modifier = Modifier.fillMaxWidth(),
@@ -29,7 +29,7 @@ fun MainTopAppBar(navHostController: NavHostController) {
             titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
             subtitleContentColor = MaterialTheme.colorScheme.onPrimaryContainer
         ),
-        actions = { MainDropDownMenu(navHostController) }
+        actions = { MainDropDownMenu(onNavigate) }
     )
 }
 
@@ -49,7 +49,7 @@ fun MainTopAppBarPreview() {
         // Usando o Surface somente para dar cor de fundo no preview. Sem ele, o fundo fica
         // transparente e não dá para ver o preview em tema escuro.
         Surface {
-            MainTopAppBar(rememberNavController())
+            MainTopAppBar({  })
         }
     }
 }
