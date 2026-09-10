@@ -7,15 +7,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3038432.navigationintent.navigation.MainNavHost
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.composable.component.MainTopAppBar
-import br.edu.ifsp.scl.sc3038432.navigationintent.ui.composable.screen.IntentScreen
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 
 class MainActivity : ComponentActivity() {
@@ -23,12 +18,18 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+
+            val navHostController = rememberNavController()
+
             NavigationIntentTheme {
                 Scaffold(
-                    modifier = Modifier.fillMaxSize(), topBar = ::MainTopAppBar
+                    modifier = Modifier.fillMaxSize(),
+                    topBar = {MainTopAppBar(navHostController)}
+                    //topBar = ::MainTopAppBar
                 ) { innerPadding ->
                     MainNavHost(
-                        navHostController = rememberNavController(),
+                        navHostController = navHostController,
+                        //navHostController = rememberNavController(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }

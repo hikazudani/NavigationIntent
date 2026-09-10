@@ -17,10 +17,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import br.edu.ifsp.scl.sc3038432.navigationintent.navigation.Screen
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 
 @Composable
-fun MainDropDownMenu() {
+fun MainDropDownMenu(navHostController: NavHostController) {
     var expanded by remember { mutableStateOf(false) }
     Box {
         IconButton(onClick = { expanded = !expanded }) {
@@ -38,6 +41,7 @@ fun MainDropDownMenu() {
                 text = { Text("Set parameter") },
                 onClick = {
                 // Navega para a ParameterScreen
+                    navHostController.navigate(Screen.ParameterScreen.route)
                     }
             )
         }
@@ -58,7 +62,7 @@ fun MainDropDownMenu() {
 fun MainDropDownMenuPreview(){
     NavigationIntentTheme {
         Surface {
-            MainDropDownMenu()
+            MainDropDownMenu(rememberNavController())
         }
     }
 }
