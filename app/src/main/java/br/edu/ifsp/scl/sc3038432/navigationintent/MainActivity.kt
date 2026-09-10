@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import br.edu.ifsp.scl.sc3038432.navigationintent.navigation.MainNavHost
@@ -28,6 +30,8 @@ class MainActivity : ComponentActivity() {
 
             val showActions = navBackStackEntry?.destination?.route == Screen.IntentScreen.route
 
+            val mainViewModel : MainViewModel = viewModel()
+
             NavigationIntentTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
@@ -39,7 +43,8 @@ class MainActivity : ComponentActivity() {
                 ) { innerPadding ->
                     MainNavHost(
                         navHostController = navHostController,
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier.padding(innerPadding),
+                        mainViewModel = mainViewModel
                     )
                 }
             }

@@ -15,8 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import br.edu.ifsp.scl.sc3038432.navigationintent.ui.theme.NavigationIntentTheme
 
 @Composable
-fun IntentScreen(modifier: Modifier) {
-    val parameter by remember { mutableStateOf("text") }
+fun IntentScreen(receivedParameter: String, modifier: Modifier) {
+    val parameter by remember { mutableStateOf(receivedParameter) }
     Column(modifier = modifier.fillMaxWidth()) {
         Text(text = parameter)
     }
@@ -38,7 +38,10 @@ fun IntentScreenPreview() {
         // Usando o Surface somente para dar cor de fundo no preview. Sem ele, o fundo fica
         // transparente e não dá para ver o preview em tema escuro.
         Surface {
-            IntentScreen(Modifier)
+            IntentScreen(
+                modifier = Modifier,
+                receivedParameter = ""
+            )
         }
     }
 }
